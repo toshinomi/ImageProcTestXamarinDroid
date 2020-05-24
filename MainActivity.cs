@@ -58,7 +58,7 @@ namespace ImageProcTestXamarinDroid
         {
             var gray = new GrayScale();
             var mutableBitmap = await Task.Run(() => gray.GoImgProc(mBitmap));
-            mImageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.RgbaF16, false));
+            mImageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
         }
 
         /// <summary>

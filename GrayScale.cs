@@ -12,6 +12,9 @@ using Android.Views;
 using Android.Widget;
 using Android.Graphics;
 
+/// <summary>
+/// グレースケール
+/// </summary>
 class GrayScale
 {
     /// <summary>
