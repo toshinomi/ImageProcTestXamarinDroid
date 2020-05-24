@@ -16,6 +16,7 @@ namespace ImageProcTestXamarinDroid
         private Bitmap      mBitmap;
         private Button      mBtnMono;
         private Button      mBtnReset;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -57,7 +58,7 @@ namespace ImageProcTestXamarinDroid
         {
             var gray = new GrayScale();
             var mutableBitmap = await Task.Run(() => gray.GoImgProc(mBitmap));
-            mImageView.SetImageBitmap(mutableBitmap?.Copy(Bitmap.Config.RgbaF16, false));
+            mImageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.RgbaF16, false));
         }
 
         /// <summary>
