@@ -12,11 +12,6 @@ namespace ImageProcTestXamarinDroid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        private ImageView   mImageView;
-        private Bitmap      mBitmap;
-        private Button      mBtnMono;
-        private Button      mBtnReset;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -38,15 +33,11 @@ namespace ImageProcTestXamarinDroid
         /// </summary>
         public void InitLayout()
         {
-            mImageView = (ImageView)FindViewById(Resource.Id.image);
+            var btnMono = (Button)FindViewById(Resource.Id.mono);
+            btnMono.Click += OnClickBtnMono;
 
-            mBitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
-
-            mBtnMono = (Button)FindViewById(Resource.Id.mono);
-            mBtnMono.Click += OnClickBtnMono;
-
-            mBtnReset = (Button)FindViewById(Resource.Id.reset);
-            mBtnReset.Click += OnClickBtnReset;
+            var btnReset = (Button)FindViewById(Resource.Id.reset);
+            btnReset.Click += OnClickBtnReset;
         }
 
         /// <summary>
@@ -57,8 +48,10 @@ namespace ImageProcTestXamarinDroid
         private async void OnClickBtnMono(object s, EventArgs e)
         {
             var gray = new GrayScale();
-            var mutableBitmap = await Task.Run(() => gray.GoImgProc(mBitmap));
-            mImageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
+            var bitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
+            var mutableBitmap = await Task.Run(() => gray.GoImgProc(bitmap));
+            var imageView = (ImageView)FindViewById(Resource.Id.image);
+            imageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
         }
 
         /// <summary>
@@ -68,7 +61,9 @@ namespace ImageProcTestXamarinDroid
         /// <param name="e">イベントのデータ</param>
         private void OnClickBtnReset(object s, EventArgs e)
         {
-            mImageView.SetImageBitmap(mBitmap);
+            var bitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
+            var imageView = (ImageView)FindViewById(Resource.Id.image);
+            imageView.SetImageBitmap(bitmap.Copy(Bitmap.Config.Argb8888, false));
         }
     }
 }
