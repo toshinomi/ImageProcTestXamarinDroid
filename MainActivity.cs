@@ -49,7 +49,7 @@ namespace ImageProcTestXamarinDroid
         {
             var gray = new GrayScale();
             var bitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog);
-            var mutableBitmap = await Task.Run(() => gray.GoImgProc(bitmap));
+            var mutableBitmap = await Task.Run(() => gray.GoImageProcessing(bitmap));
             var imageView = (ImageView)FindViewById(Resource.Id.image);
             imageView.SetImageBitmap(mutableBitmap.Copy(Bitmap.Config.Argb8888, false));
         }

@@ -36,7 +36,7 @@ class GrayScale
     /// </summary>
     /// <param name="image">ビットマップ</param>
     /// <returns>グレースケール後のビットマップ</returns>
-    public Bitmap GoImgProc(Bitmap bitmap)
+    public Bitmap GoImageProcessing(Bitmap bitmap)
     {
         var pixels = new int[bitmap.Width * bitmap.Height];
         var resultPixels = new int[bitmap.Width * bitmap.Height];
